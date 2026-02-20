@@ -95,16 +95,8 @@
             </a>
           </div>
         </div>
-        <div class="flex-1 w-full max-w-xl">
-          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 border border-slate-200 shadow-card flex items-center justify-center overflow-hidden">
-            <div class="text-center p-8">
-              <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-accent/10 text-accent mb-4">
-                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              </div>
-              <p class="text-slate-500 font-medium">Скриншот интерфейса</p>
-              <p class="text-sm text-slate-400 mt-1">3D Print Manager Dashboard</p>
-            </div>
-          </div>
+        <div class="flex-1 w-full max-w-2xl flex justify-center">
+          <img src="dashboard-photo.png" alt="3D Print Manager — приложение в мастерской с 3D-принтерами" class="w-full max-w-xl rounded-2xl shadow-card border border-slate-200">
         </div>
       </div>
     </div>
@@ -239,17 +231,13 @@
       <div class="rounded-3xl bg-accent p-8 md:p-12 text-center shadow-card relative overflow-hidden">
         <div class="absolute inset-0 opacity-10 bg-white"></div>
         <div class="relative">
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">Попробуй прямо сейчас</h2>
-          <p class="mt-4 text-blue-100 text-lg max-w-xl mx-auto">Первым 100 зарегистрированным пользователям — бесплатный доступ без ограничений.</p>
-          <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div class="inline-flex items-center justify-center gap-2 h-14 px-5 rounded-xl bg-white/20 text-white font-semibold">
-              <span class="text-2xl">🎫</span>
-              <span>Осталось <strong id="slots-remaining">27</strong> мест</span>
-            </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">Успей зарегистрироваться до конца <span id="promo-month"></span> и получи бесплатный доступ без ограничений</h2>
+          <div class="mt-6 flex justify-center">
             <a href="https://artemiy50-cmyk.github.io/3d-print-app/" class="inline-flex items-center justify-center h-14 px-10 rounded-xl font-semibold bg-white text-accent hover:bg-slate-100 transition shadow-lg">
-            Зарегистрироваться бесплатно
+              Зарегистрироваться бесплатно
             </a>
           </div>
+          <p class="mt-4 text-blue-200/80 text-sm max-w-lg mx-auto">Предложение ограничено по времени и количеству регистраций. Акция может быть завершена до обозначенного срока.</p>
         </div>
       </div>
     </div>
@@ -301,6 +289,11 @@
 
     // Текущий год в копирайте
     document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+    // Текущий месяц в родительном падеже для промо-плашки
+    const monthsGen = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    const promoMonthEl = document.getElementById('promo-month');
+    if (promoMonthEl) promoMonthEl.textContent = monthsGen[new Date().getMonth()];
   </script>
 </body>
 </html>
