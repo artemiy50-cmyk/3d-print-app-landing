@@ -22,6 +22,9 @@
   <!-- Favicon (можно заменить на /favicon.svg) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%231e40af'%3E%3Cpath d='M16 2L4 8v8l12 6 12-6V8L16 2zm0 2.5L22 8l-6 3.5L10 8l6-3.5zM6 9.5l4 2v6l-4-2v-6zm16 0l4 2v6l-4 2v-6zm-14 4l2 1v3l-2-1v-3zm12 0l2 1v3l-2 1v-3zm-8 2l4 2v3l-4-2v-3zm6 0l4 2v3l-4 2v-3zM16 18l-6 3v2l6-3 6 3v-2l-6-3z'/%3E%3C/svg%3E">
   
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -346,8 +349,13 @@
       <div class="space-y-20 md:space-y-28">
         <div class="fade-in-up flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
           <div class="flex-1 order-2 lg:order-1">
-            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-4">Дашборд и аналитика на ладони</h3>
-            <p class="text-slate-600">Быстрый обзор всех принтеров, текущих задач и запасов материалов. Сводка по катушкам, изделиям и продажам — видите остатки и динамику без переключения вкладок.</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-4">Визуальный склад и аналитика</h3>
+            <p class="text-slate-600 mb-6">Вся ваша 3D-ферма как на ладони. Следите за остатками катушек с помощью наглядных прогресс-баров с цветовой индикацией — вы всегда будете знать, когда пора заказывать новый пластик. Анализируйте графики печати и экспортируйте полную резервную копию базы в JSON в любой момент.</p>
+            <ul class="space-y-2 text-slate-600">
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Цветовая индикация остатков филамента.</li>
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Облачная синхронизация и резервное копирование.</li>
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Встроенная тёмная тема для комфортной работы ночью.</li>
+            </ul>
           </div>
           <div class="flex-1 order-1 lg:order-2">
             <img src="preview-dashboard.png" alt="Дашборд и аналитика 3D Print Manager — сводка по катушкам, изделиям и запасам" class="w-full rounded-2xl shadow-card border border-slate-200">
@@ -360,14 +368,24 @@
           </div>
           <div class="flex-1">
             <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-4">Умная карточка изделия</h3>
-            <p class="text-slate-600">Управляйте филаментом по каждому изделию: прикрепляйте фото модели и до 5 файлов в облаке. Отслеживайте время печати и автоматический расчёт затрат — учёт составных деталей из разных катушек и цветов в одной карточке.</p>
+            <p class="text-slate-600 mb-6">Полный контроль над процессом. Записывайте время печати, вес пластика (в граммах или метрах) и статус завершения. Указывайте причины брака (отлипание, засор), чтобы анализировать эффективность оборудования и снижать процент неудач.</p>
+            <ul class="space-y-2 text-slate-600">
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Точный учёт расхода филамента.</li>
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Фиксация успешных и неудачных печатей.</li>
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Привязка фото готового изделия.</li>
+            </ul>
           </div>
         </div>
         
         <div class="fade-in-up flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
           <div class="flex-1 order-2 lg:order-1">
             <h3 class="text-xl sm:text-2xl font-bold text-slate-900 mb-4">Прозрачные финансы</h3>
-            <p class="text-slate-600">Отслеживайте расходы на материалы и электричество — понимайте реальную стоимость каждого напечатанного изделия. P&amp;L за период, выручка, себестоимость. Система автоматически считает ROS и наценку.</p>
+            <p class="text-slate-600 mb-6">Считайте реальную себестоимость до копейки. Наш алгоритм учитывает не только стоимость потраченного пластика, но и затраты на электроэнергию (по мощности принтера и вашему тарифу за кВт·ч). Знайте точно, сколько вы зарабатываете с каждой детали.</p>
+            <ul class="space-y-2 text-slate-600">
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Автоматический расчёт стоимости электричества.</li>
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Учёт амортизации и стоимости часа работы.</li>
+              <li class="flex items-center gap-2"><span class="text-green-600 font-semibold">✓</span> Наглядная статистика доходов и расходов.</li>
+            </ul>
           </div>
           <div class="flex-1 order-1 lg:order-2">
             <img src="preview-reports.png" alt="Финансовые отчёты — P&amp;L, рентабельность ROS, наценка" class="w-full rounded-2xl shadow-card border border-slate-200">
@@ -505,6 +523,15 @@
     <a href="#faq" class="block py-3 text-slate-600 hover:text-accent">FAQ</a>
     <a href="#how-it-works" class="block py-3 text-slate-600 hover:text-accent">Как это работает</a>
   </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100,
+    });
+  </script>
 
   <script>
     const menuBtn = document.getElementById('menu-btn');
