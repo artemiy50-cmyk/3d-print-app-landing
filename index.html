@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO -->
+  <title>3D Print Manager — Управление 3D-фермой и учёт пластика</title>
+  <meta name="description" content="Учёт катушек, расчёт себестоимости печати, облачное хранение моделей и финансовые отчёты. Попробуй 30 дней бесплатно.">
+  
+  <!-- Open Graph / VK / Telegram -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="3D Print Manager — Управление 3D-фермой">
+  <meta property="og:description" content="Учёт катушек, расчёт себестоимости печати, облачное хранение и финансовые отчёты. 30 дней бесплатно.">
+  <meta property="og:image" content="https://placehold.co/1200x630/1e40af/ffffff/png?text=3D+Print+Manager">
+  <meta property="og:url" content="https://artemiy50-cmyk.github.io/3d-print-app/">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3D Print Manager — Управление 3D-фермой">
+  <meta name="twitter:description" content="Учёт катушек, расчёт себестоимости печати, облачное хранение и финансовые отчёты.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%231e40af'%3E%3Cpath d='M16 2L4 8v8l12 6 12-6V8L16 2zm0 2.5L22 8l-6 3.5L10 8l6-3.5zM6 9.5l4 2v6l-4-2v-6zm16 0l4 2v6l-4 2v-6zm-14 4l2 1v3l-2-1v-3zm12 0l2 1v3l-2 1v-3zm-8 2l4 2v3l-4-2v-3zm6 0l4 2v3l-4 2v-3zM16 18l-6 3v2l6-3 6 3v-2l-6-3z'/%3E%3C/svg%3E">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: '#1e40af',
+            'accent-light': '#2563eb',
+          },
+          boxShadow: {
+            'soft': '0 4px 14px 0 rgba(30, 64, 175, 0.12)',
+            'card': '0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+            'card-hover': '0 20px 50px -12px rgba(30, 64, 175, 0.25)',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .gradient-text { background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-18">
+        <a href="#" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shadow-soft">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="font-semibold text-slate-800 text-lg">3D Print Manager</span>
+        </a>
+        
+        <nav id="nav-menu" class="hidden md:flex items-center gap-8">
+          <a href="#features" class="text-slate-600 hover:text-accent transition">Возможности</a>
+          <a href="#how-it-works" class="text-slate-600 hover:text-accent transition">Как это работает</a>
+        </nav>
+        
+        <div class="flex items-center gap-2 md:gap-3">
+          <button id="menu-btn" aria-label="Меню" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <a href="https://artemiy50-cmyk.github.io/3d-print-app/" class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-medium bg-accent text-white hover:bg-accent-light shadow-soft transition">Начать бесплатно</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-12 md:py-20 lg:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div class="flex-1 text-center lg:text-left">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+            Управляй своей 3D-фермой
+            <span class="gradient-text block mt-2">эффективно</span>
+          </h1>
+          <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-xl mx-auto lg:mx-0">
+            Учёт пластика в метрах и граммах, расчёт себестоимости печати и прозрачные финансовые отчёты — всё в одном месте.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="https://artemiy50-cmyk.github.io/3d-print-app/" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold bg-accent text-white hover:bg-accent-light shadow-soft transition">
+              Начать бесплатно
+            </a>
+            <a href="#how-it-works" class="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold border-2 border-slate-300 text-slate-700 hover:border-accent hover:text-accent transition">
+              Как это работает
+            </a>
+          </div>
+        </div>
+        <div class="flex-1 w-full max-w-xl">
+          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-slate-100 to-slate-200 border border-slate-200 shadow-card flex items-center justify-center overflow-hidden">
+            <div class="text-center p-8">
+              <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-accent/10 text-accent mb-4">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <p class="text-slate-500 font-medium">Скриншот интерфейса</p>
+              <p class="text-sm text-slate-400 mt-1">3D Print Manager Dashboard</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-16 md:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900">Возможности</h2>
+        <p class="mt-4 text-slate-600 text-lg">Система полного цикла для 3D-мейкеров: от учёта катушек до финансовой отчётности</p>
+      </div>
+      
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div class="group p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-card-hover hover:border-accent/20 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-white transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-lg mb-2">Учёт катушек</h3>
+          <p class="text-slate-600">Остатки пластика в метрах и граммах. Вес, длина, дата покупки, бренд, цвет, тип. Реальная и рыночная цена. Автосписание по изделиям.</p>
+        </div>
+        
+        <div class="group p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-card-hover hover:border-accent/20 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-white transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-lg mb-2">Расчёт себестоимости</h3>
+          <p class="text-slate-600">Пластик по весу и длине, затраты на электричество (мощность принтера × тариф), брак и сервисные расходы. Рыночная и точная себестоимость.</p>
+        </div>
+        
+        <div class="group p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-card-hover hover:border-accent/20 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-white transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-lg mb-2">Изделия и облако</h3>
+          <p class="text-slate-600">Самостоятельные и составные изделия. Фото моделей и до 5 файлов (.stl и др.) в облаке. Черновики, остатки, статусы.</p>
+        </div>
+        
+        <div class="group p-6 rounded-2xl bg-slate-50 border border-slate-100 hover:shadow-card-hover hover:border-accent/20 transition-all duration-300">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-white transition">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-lg mb-2">Финансовые отчёты</h3>
+          <p class="text-slate-600">P&amp;L за период: выручка, себестоимость, ROS, наценка. Продажа, Использовано, Брак. Экспорт и импорт базы.</p>
+        </div>
+      </div>
+
+      <!-- Additional capabilities block -->
+      <div class="mt-16 p-8 rounded-2xl bg-slate-50 border border-slate-100">
+        <h3 class="font-semibold text-slate-900 text-xl mb-6">Что ещё внутри</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="flex gap-4">
+            <span class="text-2xl flex-shrink-0">📊</span>
+            <div>
+              <h4 class="font-medium text-slate-900 mb-1">Дашборд</h4>
+              <p class="text-sm text-slate-600">Сводка по катушкам, изделиям, продажам, использованию и браку.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl flex-shrink-0">📒</span>
+            <div>
+              <h4 class="font-medium text-slate-900 mb-1">Списания</h4>
+              <p class="text-sm text-slate-600">Продажа, использование, брак. Цена, сумма, прибыль — всё в одном месте.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl flex-shrink-0">🛠️</span>
+            <div>
+              <h4 class="font-medium text-slate-900 mb-1">Сервисные расходы</h4>
+              <p class="text-sm text-slate-600">Клей, смазка, сопла, пакеты — всё вычитается из прибыли.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl flex-shrink-0">⚙️</span>
+            <div>
+              <h4 class="font-medium text-slate-900 mb-1">Справочники</h4>
+              <p class="text-sm text-slate-600">Бренды, цвета, типы пластика, принтеры с мощностью, тарифы на свет.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl flex-shrink-0">💾</span>
+            <div>
+              <h4 class="font-medium text-slate-900 mb-1">Бэкапы</h4>
+              <p class="text-sm text-slate-600">Скачать базу и восстановить — ваши данные под контролем.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl flex-shrink-0">🎓</span>
+            <div>
+              <h4 class="font-medium text-slate-900 mb-1">Обучение</h4>
+              <p class="text-sm text-slate-600">Руководство пользователя и интерактивный тур по интерфейсу.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how-it-works" class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900">Как это работает</h2>
+        <p class="mt-4 text-slate-600 text-lg">Три простых шага до эффективного учёта</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8 md:gap-6">
+        <div class="relative flex flex-col items-center text-center">
+          <div class="w-16 h-16 rounded-2xl bg-accent text-white flex items-center justify-center font-bold text-xl shadow-soft mb-6">1</div>
+          <h3 class="font-semibold text-slate-900 text-lg mb-2">Настрой справочники</h3>
+          <p class="text-slate-600">Добавь принтеры (с мощностью в кВт), тарифы на электричество, бренды и цвета пластика.</p>
+          <div class="hidden md:block absolute top-8 left-[60%] w-full h-0.5 bg-slate-200 -z-10"></div>
+        </div>
+        <div class="relative flex flex-col items-center text-center">
+          <div class="w-16 h-16 rounded-2xl bg-accent text-white flex items-center justify-center font-bold text-xl shadow-soft mb-6">2</div>
+          <h3 class="font-semibold text-slate-900 text-lg mb-2">Заведи филамент</h3>
+          <p class="text-slate-600">Внеси катушки: вес, длина, остатки, реальная и рыночная цена. Система посчитает себестоимость за грамм и метр.</p>
+          <div class="hidden md:block absolute top-8 left-[60%] w-full h-0.5 bg-slate-200 -z-10"></div>
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <div class="w-16 h-16 rounded-2xl bg-accent text-white flex items-center justify-center font-bold text-xl shadow-soft mb-6">3</div>
+          <h3 class="font-semibold text-slate-900 text-lg mb-2">Печатай и считай</h3>
+          <p class="text-slate-600">Создавай изделия, привязывай пластик и время печати. Продавай, списывай — P&amp;L формируется автоматически.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl bg-accent p-8 md:p-12 text-center shadow-card relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-white"></div>
+        <div class="relative">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">Попробуй прямо сейчас</h2>
+          <p class="mt-4 text-blue-100 text-lg max-w-xl mx-auto">Первым 100 зарегистрированным пользователям — бесплатный доступ без ограничений.</p>
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div class="inline-flex items-center justify-center gap-2 h-14 px-5 rounded-xl bg-white/20 text-white font-semibold">
+              <span class="text-2xl">🎫</span>
+              <span>Осталось <strong id="slots-remaining">27</strong> мест</span>
+            </div>
+            <a href="https://artemiy50-cmyk.github.io/3d-print-app/" class="inline-flex items-center justify-center h-14 px-10 rounded-xl font-semibold bg-white text-accent hover:bg-slate-100 transition shadow-lg">
+            Зарегистрироваться бесплатно
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 bg-slate-900 text-slate-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="font-semibold text-white">3D Print Manager</span>
+        </div>
+        <nav class="flex flex-wrap justify-center gap-6 md:gap-8">
+          <a href="#features" class="hover:text-white transition">Возможности</a>
+          <a href="#how-it-works" class="hover:text-white transition">Как это работает</a>
+          <a href="https://artemiy50-cmyk.github.io/3d-print-app/" class="hover:text-white transition">Приложение</a>
+        </nav>
+      </div>
+      <div class="mt-8 pt-8 border-t border-slate-700 text-center text-sm text-slate-500">
+        © <span id="copyright-year"></span> Lucky Art Studio — Все права защищены
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile menu overlay -->
+  <div id="mobile-nav" class="fixed inset-0 z-40 bg-slate-900/50 backdrop-blur-sm md:hidden hidden" aria-hidden="true"></div>
+  <div id="mobile-menu" class="fixed top-16 right-0 w-64 py-4 px-4 bg-white rounded-bl-2xl shadow-xl z-50 md:hidden hidden border-l border-b border-slate-200">
+    <a href="#features" class="block py-3 text-slate-600 hover:text-accent">Возможности</a>
+    <a href="#how-it-works" class="block py-3 text-slate-600 hover:text-accent">Как это работает</a>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const links = document.querySelectorAll('#mobile-menu a');
+
+    function toggleMenu() {
+      mobileNav.classList.toggle('hidden');
+      mobileMenu.classList.toggle('hidden');
+      document.body.style.overflow = mobileMenu.classList.contains('hidden') ? '' : 'hidden';
+    }
+    menuBtn?.addEventListener('click', toggleMenu);
+    mobileNav?.addEventListener('click', toggleMenu);
+    links.forEach(l => l.addEventListener('click', toggleMenu));
+
+    // Текущий год в копирайте
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
